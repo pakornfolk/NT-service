@@ -18,95 +18,265 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-gray-900 text-white p-4 sticky top-0 z-50 shadow-md">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">NT Service</h1>
-      <ul class="flex space-x-4 text-sm md:text-base">
-        <li><a href="#about" class="hover:text-yellow-400">เกี่ยวกับเรา</a></li>
-        <li><a href="#work" class="hover:text-yellow-400">ผลงาน</a></li>
-        <li><a href="#reviews" class="hover:text-yellow-400">รีวิว</a></li>
-        <li><a href="#contact" class="hover:text-yellow-400">ติดต่อ</a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="bg-gray-800 text-white sticky top-0 z-50 shadow-md">
+  <div class="flex justify-between items-center px-10 py-8 max-w-full mx-auto">
+    <div class="flex items-center space-x-4">
+        <img src="NT.png" alt="NT Service Logo" class="h-16 md:h-20 bg-white"> <!-- ปรับขนาดตามต้องการ -->
+        <h1 class="text-4xl font-bold tracking-wide">NT Service</h1>
+    </div>
 
-    <section id="about" class="py-16 text-center bg-white">
-    <h2 class="text-3xl font-bold mb-4 ">อู่ช่างตี๋ NT Service</h2>
-    <p class="max-w-1xl mx-auto text-white-500 bg-green-500 p-2 rounded">
-     🚗 ให้บริการซ่อมรถยนต์ทุกประเภท : เครื่องยนต์ เบรค ครัทช์ ช่วงล่าง แอร์ และเปลี่ยนถ่ายน้ำมันของเหลวทุกชนิด 🚗 </p>
-    <img src="NT.png"
-         alt="Garage" class="mx-auto mt-8 rounded-lg shadow-lg max-w-md w-full">
-  </section>
+    <!-- Desktop Menu -->
+    <ul class="hidden md:flex space-x-8 text-xl font-medium">
+      <li><a href="#services" class="hover:text-yellow-400 transition">บริการของเรา</a></li>
+      <li><a href="#work" class="hover:text-yellow-400 transition">ภาพผลงาน</a></li>
+      <li><a href="#Day" class="hover:text-yellow-400 transition">วันและเวลาทำการ</a></li>
+      <li><a href="#contact" class="hover:text-yellow-400 transition">ติดต่อ</a></li>
+    </ul>
 
-    <section id="work" class="py-16 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-6">ผลงานซ่อมล่าสุด 📸</h2>
+    <!-- Mobile Hamburger Button -->
+    <button id="menu-btn" class="md:hidden focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
 
-            <div id="gallery-container" class="relative">
-        <div id="gallery"
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-gray-800">
+    <ul class="flex flex-col space-y-2 p-4 text-lg font-medium">
+      <li><a href="#services" class="hover:text-yellow-400 transition block">บริการของเรา</a></li>
+      <li><a href="#work" class="hover:text-yellow-400 transition block">ภาพผลงาน</a></li>
+      <li><a href="#Day" class="hover:text-yellow-400 transition block">วันและเวลาทำการ</a></li>
+      <li><a href="#contact" class="hover:text-yellow-400 transition block">ติดต่อ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="about" class="py-8 text-center">
+  <h2 class="text-4xl font-bold mb-4 mt-2">อู่ช่างตี๋ NT Service</h2>
+  <p class="max-w-1xl mx-auto text-red-500 text-1xl" style="font-family: prompt, sans-serif;">
+    ❗ เว็บไซต์นี้เป็นเพียงข้อมูลการแนะนำต่างๆของอู่ช่างตี๋ NT Service ❗
+  </p>
+  <p class="max-w-1xl mx-auto text-white bg-green-500 p-2 rounded mt-8 text-2xl">
+    🚗 ให้บริการซ่อมรถยนต์ทุกประเภท : เครื่องยนต์ เบรค ครัทช์ ช่วงล่าง แอร์ และเปลี่ยนถ่ายน้ำมันของเหลวทุกชนิด 🚗
+  </p>
+  <img src="NT.png" alt="Garage" class="mx-auto w-48 md:w-64 lg:w-80 mt-4">
+</section>
+
+  <style>
+    body {
+    background: linear-gradient(-45deg, #f0f4f8, #d9e4ec, #e6f0ff, #f9f9ff);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  #about {
+    background: linear-gradient(135deg, #ffffff, #61e7a9);
+  }
+  #work {
+    background: linear-gradient(135deg, #ffffff, #61e7a9);
+  }
+
+  #Day {
+    background: linear-gradient(135deg, #fff5f5, #ffeaea);
+  }
+
+  #contact {
+    background: radial-gradient(circle at top, #1e293b, #111827);
+  }
+  section {
+  scroll-margin-top: 80px; /* mobile */
+    }
+    @media(min-width: 1024px) {
+    section {
+        scroll-margin-top: 64px; /* desktop */
+        }
+    }
+    /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .services-grid {
+            grid-template-columns: 1fr; /* Desktop: 2 คอลัมน์ */
+            }
+        }
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+  </style>
+
+    <section id="services" class = "mt-12 mb-10 text-center">
+      
+        <h2 class="text-3xl font-bold mb-8 text-center"> 🧑‍🔧 บริการของเรา 🧑‍🔧</h2></br>
+        <div class="services-grid px-6 max-w-6xl mx-auto">
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>ซ่อมเครื่องยนต์</h3>
+                <p>ตรวจเช็คและซ่อมเครื่องยนต์ทุกชนิด พร้อมเปลี่ยนอะไหล่ </p> ตามที่ลูกค้าต้องการ</p>
+            </div>
+        
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>เปลี่ยนถ่ายน้ำมัน</h3>
+                <p>เปลี่ยนถ่ายน้ำมันเครื่อง น้ำมันเกียร์ ตามระยะ</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔩</div>
+                <h3>ระบบเบรก</h3>
+                <p>ตรวจสอบและซ่อมระบบเบรก เพื่อความปลอดภัย</p>
+            </div>
+           
+            <div class="service-card">
+                <div class="service-icon">💡</div>
+                <h3>ระบบไฟฟ้า</h3>
+                <p>ซ่อมระบบไฟฟ้า ตรวจสอบแบตเตอรี่ ไดชาร์จ</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">❄️</div>
+                <h3>ระบบแอร์</h3>
+                <p>ซ่อมระบบแอร์ เปลี่ยนน้ำยาแอร์ เกี่ยวกับระแบบแอร์อื่นๆ</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛞</div>
+                <h3>ระบบคลัทช์</h3>
+                <p>ตรวจสอบและเช็คระบบคลัทช์ พร้อมปรับเปลี่ยน</p>
+            </div>
+        </div>
+    </section>
+
+<section id="work" class="py-16 bg-gray-100 shadow-inner light-overlay">
+    <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6 text-center">ผลงานต่างๆของเรา 🔍 </h2>
+        <p class="max-w-1xl mx-auto text-red-500 text-1xl font-bold mb-10 text-center" style="font-family: prompt, sans-serif;">
+    📸 เป็นภาพผลงานส่วนหนึ่ง ที่อยู่ในการบริการของ อู่ NT Service 📸
+  </p>
+
+   <div id="gallery-container" class="relative " >
+    <div id="gallery"
           class="flex space-x-4 pb-4 overflow-x-scroll scrollbar-hide snap-x snap-mandatory">
           
                     <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full h-48 object-contain p-4">
+            <img src="2.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ซ่อมเครื่องยนต์ Toyota</h3>
-              <p class="text-sm text-gray-600">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>
+              <h3 class="text-lg font-semibold truncate">เปลี่ยนตู้แอร์</h3>
+              <p class="text-sm text-gray-600">เปลี่ยนและทำความสะอาดตู้แอร์ และเช็คระบบแอร์ ให้แอร์กลับมาเย็นอีกครั้ง</p>Honda Civic FC 🚗</p>
             </div>
           </div>
           
                     <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <div class="w-full h-48 bg-gray-200 flex items-center justify-center p-4">
-              <span class="text-sm font-bold text-gray-500">📸 ทำสีและเคาะตัวถัง</span>
-            </div>
+            <img src="1.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ทำสีและเคาะตัวถัง</h3>
-              <p class="text-sm text-gray-600">สีเนียนเหมือนใหม่ 100%</p>
+              <h3 class="text-lg font-semibold truncate">ตรวจสอบระบบเบรค </p>และ เปลี่ยนผ้าเบรค</h3>
+              <p class="text-sm text-gray-600">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>Toyota Altis 🚗</p>
             </div>
           </div>
-
                     <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <div class="w-full h-48 bg-gray-200 flex items-center justify-center p-4">
-              <span class="text-sm font-bold text-gray-500">📸 ทำสีและเคาะตัวถัง</span>
-            </div>
+            <img src="3.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ทำสีและเคาะตัวถัง</h3>
-              <p class="text-sm text-gray-600">สีเนียนเหมือนใหม่ 100%</p>
+              <h3 class="text-lg font-semibold truncate">ตรวจเช็คห้องเครื่อง</h3>
+              <p class="text-sm text-gray-600">เปลี่ยนสายพาน และ มู่เล่หน้าเครื่อง</p>Toyota Mighty 🚗</p>
             </div>
           </div>
 
             <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <div class="w-full h-48 bg-gray-200 flex items-center justify-center p-4">
-              <span class="text-sm font-bold text-gray-500">📸 ทำสีและเคาะตัวถัง</span>
-            </div>
+            <img src="4.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ทำสีและเคาะตัวถัง</h3>
-              <p class="text-sm text-gray-600">สีเนียนเหมือนใหม่ 100%</p>
+              <h3 class="text-lg font-semibold truncate">ตรวจเช็ตคช่วงล่าง</h3>
+              <p class="text-sm text-gray-600">เปลี่ยนเบ้าโช๊ค ตรวจเช็คช่วงล่างอื่นๆ</p>Toyota Vios 🚗</p>
             </div>
           </div>
 
             <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full h-48 object-contain p-4">
+            <img src="5.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ซ่อมเครื่องยนต์ Toyota</h3>
-              <p class="text-sm text-gray-600">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>
+              <h3 class="text-lg font-semibold truncate">เปลี่ยนถ่ายของเหลว</h3>
+              <p class="text-sm text-gray-600">ถ่ายน้ำมันเครื่อง-น้ำมันเกียร์ ตามระยะ และเปลี่ยนกรองเกียร์</p>Benz E200 🚗</p>
             </div>
           </div>
 
             <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full h-48 object-contain p-4">
+            <img src="6.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ซ่อมเครื่องยนต์ Toyota</h3>
-              <p class="text-sm text-gray-600">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>
+              <h3 class="text-lg font-semibold truncate">เช็คระบบไฟ</h3>
+              <p class="text-sm text-gray-600">ติดตั้งระบบไฟ-ไฟหน้ารถ เปลี่ยนแบตเตอรี่</p>Mitsubishi Triton 🚗</p>
             </div>
           </div>
 
             <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
-            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full h-48 object-contain p-4">
+            <img src="7.jpg" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
             <div class="p-4 pt-0">
-              <h3 class="text-lg font-semibold truncate">ซ่อมเครื่องยนต์ Toyota</h3>
-              <p class="text-sm text-gray-600">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>
+              <h3 class="text-lg font-semibold truncate">เช็คช่วงล่าง</h3>
+              <p class="text-sm text-gray-600">เปลี่ยนยางแท่นเครื่อง และ Rack Power</p>Honda HRV 🚗</p>
             </div>
           </div>
+          <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
+            <div class="p-4 pt-0">
+              <h3 class="text-lg font-semibold truncate">COMING SOON</h3>
+              <p class="text-sm text-gray-600 font-bold">รูปภาพอื่นๆจะมีเพิ่มเติมอีกเร็วๆนี้</p>
+            </div>
+          </div>
+        <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
+            <div class="p-4 pt-0">
+              <h3 class="text-lg font-semibold truncate">COMING SOON</h3>
+              <p class="text-sm text-gray-600 font-bold">รูปภาพอื่นๆจะมีเพิ่มเติมอีกเร็วๆนี้</p>
+            </div>
+          </div>
+        <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
+            <div class="p-4 pt-0">
+              <h3 class="text-lg font-semibold truncate">COMING SOON</h3>
+              <p class="text-sm text-gray-600 font-bold">รูปภาพอื่นๆจะมีเพิ่มเติมอีกเร็วๆนี้</p>
+            </div>
+          </div>
+        <div class="flex-shrink-0 w-72 snap-start bg-white rounded-lg shadow-xl overflow-hidden border border-gray-200">
+            <img src="NT.png" alt="ซ่อมเครื่องยนต์ Toyota" class="w-full object-contain px-4">
+            <div class="p-4 pt-0">
+              <h3 class="text-lg font-semibold truncate">COMING SOON</h3>
+              <p class="text-sm text-gray-600 font-bold">รูปภาพอื่นๆจะมีเพิ่มเติมอีกเร็วๆนี้</p>
+            </div>
+          </div>
+        
                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gray-300 mx-8">
           <div id="scroll-indicator" class="h-1 bg-gray-500 rounded transition-all duration-100 ease-out" style="width: 100%;"></div>
         </div>
@@ -114,177 +284,36 @@
     </div>
   </section>
 
-    <section id="reviews" class="py-16 bg-white text-center">
-    <h2 class="text-3xl font-bold mb-8">รีวิวจากลูกค้าที่มาใช้บริการจริง</h2>
-    <p class="text-1xl font-bold mb-8 text-red-500"> - ขอความกรุณาลูกค้าที่มารีวิว </br>โปรดกรอกชื่อตามนี้ 👉 ชื่อของท่าน ,ยี่ห้อรถยนต์และรุ่นรถยนต์  </p>
-    <div>🚨 รีวิวนี้เป็นเพียงส่วนหนึ่งของความพึงพอใจของลูกค้าที่เข้ามาใช้บริการ เราจะคำแนะนำและคำติชม มาพัฒนาและปรับปรุงต่อไป 🚨 </br> 🙏 หากลูกค้าประสงค์รีวิวอย่างจริงจัง ลูกค้าสามารถเข้าไปรีวิวเพิ่มเติมได้ที่ Google Map ของอู่เราได้ครับ ขอบคุณครับ 🙏</div>
-    <div> 😊 อย่าลืมเชิญชวนคนรู้จักของท่าน มาใช้บริการที่อู่เรากันเยอะๆนะครับ 😊 </div>
-    <div id="review-list" class="max-w-3xl mx-auto space-y-6">
-      <div class="bg-gray-100 p-4 rounded-lg shadow">
-        <div class="flex justify-center text-yellow-400 mb-2">
-          <span>⭐⭐⭐⭐⭐</span>
-        </div>
-        <p class="italic">“บริการดีมาก ซ่อมไว ราคายุติธรรม แนะนำเลยครับ”</p>
-        <span class="block mt-2 font-semibold">– คุณต้น, Honda Civic</span>
-      </div>
-    </div>
-
-        <div class="max-w-md mx-auto mt-8 text-left bg-gray-100 p-6 rounded-lg shadow">
-      <h3 class="text-xl font-semibold mb-4">เพิ่มรีวิวของคุณ</h3>
-      <form id="reviewForm" class="space-y-3">
-        <input type="text" id="name" placeholder="ชื่อของคุณ" class="w-full p-2 border rounded" required>
-        <textarea id="message" placeholder="ข้อความรีวิว" class="w-full p-2 border rounded" required></textarea>
-        
-        <div class="flex space-x-2 items-center">
-          <label class="font-medium text-sm">ให้คะแนน:</label>
-          <div id="starRating" class="flex space-x-1 cursor-pointer text-gray-400 text-xl">
-            <span data-star="1">★</span>
-            <span data-star="2">★</span>
-            <span data-star="3">★</span>
-            <span data-star="4">★</span>
-            <span data-star="5">★</span>
-          </div>
-        </div>
-
-        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 w-full">ส่งรีวิว</button>
-      </form>
-      <p class="mt-6 text-gray-500 text-sm">
-        
-      </p>
-    </div>
-  </section>
+    <section id="Day" class="py-16 bg-red-100 text-center">
+  <h2 class="text-3xl font-bold mb-4"> วันและเวลาทำการ 🕓</h2>
+  <p class="text-lg">เปิดบริการทุกวันจันทร์ - เสาร์</p>
+  <p class="text-lg">เวลา 9:00 น. - 18:00 น.</p>
+  <p class="text-lg text-red-500 mt-2 font-bold">🚫 หยุดทุกวันอาทิตย์ 🚫</p>
+</section>
 
     <section id="contact" class="py-16 bg-gray-900 text-white text-center">
-    <h2 class="text-3xl font-bold mb-6"> ติดต่อเรา ☎️ </h2>
+    <h2 class="text-3xl font-bold mb-2"> ติดต่อเรา ☎️ </h2>
     <p>📍 Q96W+282 Unnamed Road แขวงทวีวัฒนา เขตทวีวัฒนา กรุงเทพมหานคร 10170 </p>
-    <p>📞 081-381-1247 (ช่างตี๋) | 📞 081-381-1247 (คุณน้อย) </p>
+    <p>📞 081-381-1247 (ช่างตี๋) | 📞 086-626-2802 (คุณน้อย) </p>
 
-    <div class="mt-6 flex justify-center">
+    <div class="mt-4 flex justify-center">
       <iframe 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.3129504512904!2d100.39312737485609!3d13.759991686632723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e297113f9ed05d%3A0xb3b127c18de0bef7!2sNT%20service%20-%20car%20garage!5e0!3m2!1sen!2sth!4v1761837339133!5m2!1sen!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
+    <p class="text-white py-4 text-center text-2xl mt-10">
+    ♡ˎˊ˗ รบกวนลูกค้าทุกๆท่าน เข้าไปรีวิวให้ 5 ดาว ของอู่เรา ใน Google Map กันเยอะๆนะครับ ✍️ </p>
   </section>
 
     <footer class="bg-gray-800 text-white py-4 text-center text-sm">
     © NT service | Designed by อู่ช่างตี๋ NT service สาย 2
   </footer>
 
-    <script>
-    // ⭐ Review system (โค้ดเดิม)
-    const form = document.getElementById('reviewForm');
-    const reviewList = document.getElementById('review-list');
-    const starContainer = document.getElementById('starRating');
-    let selectedRating = 0;
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
 
-    starContainer.addEventListener('click', (e) => {
-      if (e.target.dataset.star) {
-        selectedRating = parseInt(e.target.dataset.star);
-        updateStarDisplay();
-      }
-    });
-
-    function updateStarDisplay() {
-      [...starContainer.children].forEach(star => {
-        const value = parseInt(star.dataset.star);
-        star.classList.toggle('text-yellow-400', value <= selectedRating);
-        star.classList.toggle('text-gray-400', value > selectedRating);
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', loadReviews);
-
-    function loadReviews() {
-      const storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-      storedReviews.forEach(addReviewToDOM);
-    }
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (name && message && selectedRating > 0) {
-        const newReview = { name, message, rating: selectedRating };
-        addReviewToDOM(newReview, true);
-        saveReview(newReview);
-        form.reset();
-        selectedRating = 0;
-        updateStarDisplay();
-      } else {
-        alert("กรุณากรอกชื่อ รีวิว และเลือกจำนวนดาวให้ครบครับ 😊");
-      }
-    });
-
-    function addReviewToDOM({ name, message, rating }, isNew = false) {
-      const reviewDiv = document.createElement('div');
-      reviewDiv.className = 'bg-gray-100 p-4 rounded-lg shadow relative';
-      const stars = '⭐'.repeat(rating);
-      reviewDiv.innerHTML = `
-        <div class="flex justify-center text-yellow-400 mb-2">${stars}</div>
-        <p class="italic">“${message}”</p>
-        <span class="block mt-2 font-semibold">– ${name}</span>
-      `;
-      if (isNew) {
-        const delBtn = document.createElement('button');
-        delBtn.textContent = 'ลบ';
-        delBtn.className = 'absolute top-2 right-2 text-sm text-red-500 hover:text-red-700';
-        delBtn.addEventListener('click', () => {
-          reviewDiv.remove();
-          deleteReview(name, message);
-        });
-        reviewDiv.appendChild(delBtn);
-      }
-      reviewList.appendChild(reviewDiv);
-    }
-
-    function saveReview(review) {
-      const storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-      storedReviews.push(review);
-      localStorage.setItem('reviews', JSON.stringify(storedReviews));
-    }
-
-    function deleteReview(name, message) {
-      let storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-      storedReviews = storedReviews.filter(r => !(r.name === name && r.message === message));
-      localStorage.setItem('reviews', JSON.stringify(storedReviews));
-    }
-    
-    // ⭐ Gallery Scroll Indicator (โค้ดใหม่)
-    const gallery = document.getElementById('gallery');
-    const indicator = document.getElementById('scroll-indicator');
-
-    if (gallery && indicator) {
-      gallery.addEventListener('scroll', updateScrollIndicator);
-      // เรียกใช้ครั้งแรกเพื่อให้แสดงตำแหน่งที่ถูกต้องเมื่อโหลดหน้าเว็บ
-      window.addEventListener('load', updateScrollIndicator);
-      window.addEventListener('resize', updateScrollIndicator);
-
-      function updateScrollIndicator() {
-        const scrollLeft = gallery.scrollLeft;
-        const maxScroll = gallery.scrollWidth - gallery.clientWidth;
-
-        if (maxScroll > 0) {
-          const scrollPercentage = (scrollLeft / maxScroll);
-          
-          // คำนวณความกว้างของแถบเลื่อน (สมมติว่าต้องการให้แถบกว้างเท่ากับ 1 card)
-          // ในโค้ด Tailwind เราตั้งค่า card กว้าง 72 (w-72) และ space-x-4
-          // เนื่องจากคำนวณซับซ้อน จะใช้ค่าประมาณ 25% ตามภาพตัวอย่าง
-          const indicatorWidth = (gallery.clientWidth / gallery.scrollWidth) * 100;
-
-          // กำหนดความกว้างของแถบเลื่อน
-          indicator.style.width = `${indicatorWidth}%`;
-          
-          // กำหนดตำแหน่งของแถบเลื่อน
-          const translateX = scrollPercentage * (100 - indicatorWidth);
-          indicator.style.transform = `translateX(${translateX}%)`;
-        } else {
-          // ถ้าไม่มีการเลื่อน (เนื้อหาน้อยกว่าพื้นที่แสดง) ให้แสดงเต็ม 100%
-          indicator.style.width = '100%';
-          indicator.style.transform = 'translateX(0)';
-        }
-      }
-    }
-  </script>
-</body>
-</html>
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
