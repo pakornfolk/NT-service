@@ -1,0 +1,118 @@
+body {
+  background-color: #0a0a0a;
+  color: #f5f0e8;
+  font-family: 'Prompt', sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+h1 {
+  color: #c0392b;
+  text-align: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background: #111;
+}
+th, td {
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: left;
+}
+th {
+  background: #2a2a2a;
+  color: #f39c12;
+}
+.status-badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+.status-pending { background: #f39c12; color: #000; }
+.status-confirmed { background: #2ecc71; color: #000; }
+
+.nav-back {
+  color: #f39c12;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+.nav-back:hover { text-decoration: underline; }
+
+.btn-action {
+  padding: 0.4rem 0.6rem;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-right: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.btn-confirm-action { background: #2ecc71; color: #000; }
+.btn-cancel-action { background: #e74c3c; color: #fff; }
+.btn-action:hover { opacity: 0.8; }
+
+/* Login Form Styles */
+#login-container {
+  max-width: 400px;
+  margin: 4rem auto;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 2.5rem;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  text-align: center;
+}
+#login-container h2 {
+  margin-top: 0;
+  color: #c0392b;
+  margin-bottom: 1.5rem;
+}
+.login-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+.login-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+.login-group input {
+  width: 100%;
+  padding: 0.8rem;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #f5f0e8;
+  border-radius: 2px;
+  font-family: 'Prompt', sans-serif;
+}
+.login-group input:focus {
+  outline: none;
+  border-color: #c0392b;
+}
+#btn-login {
+  width: 100%;
+  padding: 1rem;
+  background: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+#btn-login:hover { background: #e74c3c; }
+#login-error {
+  color: #e74c3c;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  display: none;
+}
+
+#admin-dashboard {
+  display: none;
+}

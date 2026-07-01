@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จองคิวออนไลน์ - NT Service</title>
+  <link rel="icon" type="image/png" href="../img/NT.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="booking.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-logo">
+      <img src="../img/NT.png" alt="NT Service">
+      <div class="nav-brand">
+        <span class="nav-brand-main">NT Service</span>
+      </div>
+    </a>
+    <a href="../index.html" class="nav-back">&larr; กลับหน้าหลัก</a>
+  </nav>
+
+  <div class="booking-wrapper">
+    <div class="booking-bg"></div>
+    <div class="booking-card">
+      <div class="booking-header">
+        <p class="section-tag">Online Booking</p>
+        <h2 class="section-title">จองคิวรับบริการ</h2>
+        <p style="color: var(--muted); font-size: 0.9rem;">ระบุข้อมูลเพื่อให้ช่างของเราเตรียมตัวดูแลรถของคุณ</p>
+      </div>
+
+      <form id="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-name">ชื่อ-นามสกุล / Name</label>
+            <input type="text" id="book-name" required placeholder="เช่น สมชาย ใจดี">
+          </div>
+          <div class="form-group">
+            <label for="book-phone">เบอร์โทรศัพท์ / Phone</label>
+            <input type="tel" id="book-phone" required placeholder="08X-XXX-XXXX">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-car">ยี่ห้อ/รุ่นรถ / Car Model</label>
+            <input type="text" id="book-car" required placeholder="เช่น Honda Civic FC 2018">
+          </div>
+          <div class="form-group">
+            <label for="book-service">บริการที่ต้องการ / Service</label>
+            <select id="book-service" required>
+              <option value="" disabled selected>-- เลือกบริการ --</option>
+              <option value="ซ่อมเครื่องยนต์">ซ่อมเครื่องยนต์</option>
+              <option value="เปลี่ยนถ่ายน้ำมัน">เปลี่ยนถ่ายน้ำมัน/ของเหลว</option>
+              <option value="ระบบเบรก">ระบบเบรก</option>
+              <option value="ระบบไฟ">ระบบไฟฟ้า / แบตเตอรี่</option>
+              <option value="ระบบแอร์">ระบบแอร์</option>
+              <option value="ช่วงล่าง">ตรวจเช็คช่วงล่าง / คลัทช์</option>
+              <option value="อื่นๆ">อื่นๆ (ระบุในรายละเอียด)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="book-date">วันที่ต้องการเข้ารับบริการ / Date</label>
+            <input type="date" id="book-date" required>
+          </div>
+          <div class="form-group">
+            <label for="book-time">เวลาโดยประมาณ / Time</label>
+            <input type="time" id="book-time" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="book-details">รายละเอียดเพิ่มเติม / Additional details</label>
+          <textarea id="book-details" rows="3" placeholder="ระบุอาการของรถเบื้องต้น..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">ยืนยันการจองคิว</button>
+        <div id="booking-status"></div>
+      </form>
+
+      <div style="margin-top: 3rem; text-align: center;">
+        <a href="../checking/checking.html"
+          style="color: var(--amber); text-decoration: none; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: color 0.2s;">
+          🔍 ตรวจสอบประวัติการจอง / ยกเลิกคิว &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-brand">NT Service</div>
+    <div class="footer-credit">© อู่ช่างตี๋ NT Service | design by Pakornkiat Vonma</div>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // TODO: ใส่ Firebase Config ตัวเดียวกันกับหน้า admin
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2uzIukhYQ9lrCKPSWeBzLG3hz58PTixY",
+      authDomain: "nt-service-booking.firebaseapp.com",
+      projectId: "nt-service-booking",
+      storageBucket: "nt-service-booking.firebasestorage.app",
+      messagingSenderId: "912294226965",
+      appId: "1:912294226965:web:3d4cb7baf50ef9f6b8b21c",
+      measurementId: "G-Q0C82P2MRR"
+    };
+
+    let app, db;
+    const statusEl = document.getElementById('booking-status');
+
+    try {
+      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+      } else {
+        console.warn("Please update firebaseConfig to connect to the database.");
+      }
+    } catch (e) {
+      console.error("Firebase init error", e);
+    }
+
+    const bookingForm = document.getElementById('booking-form');
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('book-date').setAttribute('min', today);
+
+    bookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!db) {
+        statusEl.innerHTML = '<span style="color:var(--amber);">ระบบฐานข้อมูลยังไม่ได้ตั้งค่า กรุณาดูวิธีตั้งค่า Firebase หรือติดต่อผู้ดูแล</span>';
+        return;
+      }
+
+      const btn = bookingForm.querySelector('.btn-submit');
+      const originalText = btn.textContent;
+      btn.textContent = 'กำลังบันทึก...';
+      btn.disabled = true;
+
+      try {
+        await addDoc(collection(db, "bookings"), {
+          name: document.getElementById('book-name').value,
+          phone: document.getElementById('book-phone').value,
+          car: document.getElementById('book-car').value,
+          service: document.getElementById('book-service').value,
+          date: document.getElementById('book-date').value,
+          time: document.getElementById('book-time').value,
+          details: document.getElementById('book-details').value,
+          createdAt: serverTimestamp(),
+          status: 'รอยืนยัน'
+        });
+
+        statusEl.innerHTML = '<span style="color:#2ecc71;">จองคิวสำเร็จ! </span>';
+        bookingForm.reset();
+
+        setTimeout(() => { statusEl.innerHTML = ''; }, 5000);
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        statusEl.innerHTML = '<span style="color:var(--rust);">เกิดข้อผิดพลาดในการจองคิว กรุณาลองใหม่อีกครั้ง</span>';
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+
+</html>

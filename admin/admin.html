@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - NT Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div id="login-container">
+    <h2>Admin Login</h2>
+    <form id="login-form">
+      <div class="login-group">
+        <label>Username</label>
+        <input type="text" id="login-user" required autocomplete="off">
+      </div>
+      <div class="login-group">
+        <label>Password</label>
+        <input type="password" id="login-pass" required>
+      </div>
+      <button type="submit" id="btn-login">เข้าสู่ระบบ</button>
+      <div id="login-error">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!</div>
+    </form>
+  </div>
+
+  <div id="admin-dashboard">
+    <a href="../index.html" class="nav-back">&larr; กลับหน้าแรก</a>
+    <h1>จัดการคิวจองรับบริการ</h1>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>วันที่ต้องการ-เวลา</th>
+          <th>ชื่อลูกค้า</th>
+          <th>เบอร์โทร</th>
+          <th>รถยนต์</th>
+          <th>บริการ</th>
+          <th>รายละเอียด</th>
+          <th>สถานะ</th>
+          <th>จัดการ</th>
+        </tr>
+      </thead>
+      <tbody id="bookings-tbody">
+        <tr><td colspan="8" style="text-align:center;">กำลังโหลด... หรือยังไม่ได้ตั้งค่า Firebase</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  // TODO: ใส่ Firebase Config ตัวเดียวกับในหน้า index.html
+  const firebaseConfig = {
+    apiKey: "AIzaSyB2uzIukhYQ9lrCKPSWeBzLG3hz58PTixY",
+    authDomain: "nt-service-booking.firebaseapp.com",
+    projectId: "nt-service-booking",
+    storageBucket: "nt-service-booking.firebasestorage.app",
+    messagingSenderId: "912294226965",
+    appId: "1:912294226965:web:3d4cb7baf50ef9f6b8b21c",
+    measurementId: "G-Q0C82P2MRR"
+  };
+
+  const loginForm = document.getElementById('login-form');
+  const loginContainer = document.getElementById('login-container');
+  const adminDashboard = document.getElementById('admin-dashboard');
+  const loginError = document.getElementById('login-error');
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const user = document.getElementById('login-user').value;
+    const pass = document.getElementById('login-pass').value;
+
+    if (user === 'admin' && pass === 'admin1234') {
+      loginContainer.style.display = 'none';
+      adminDashboard.style.display = 'block';
+      fetchData(); // Load data only after login
+    } else {
+      loginError.style.display = 'block';
+    }
+  });
+
+  const tbody = document.getElementById('bookings-tbody');
+  let db;
+
+  async function fetchData() {
+    try {
+      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        if (!db) {
+          const app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+        }
+        
+        const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+        
+        if(querySnapshot.empty) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">ยังไม่มีข้อมูลการจอง</td></tr>';
+        } else {
+          tbody.innerHTML = '';
+          querySnapshot.forEach((documentSnap) => {
+            const data = documentSnap.data();
+            const tr = document.createElement('tr');
+            
+            let actionButtons = '';
+            if (data.status === 'รอยืนยัน') {
+              actionButtons = `
+                <button class="btn-action btn-confirm-action" data-id="${documentSnap.id}" data-status="ยืนยันแล้ว">✅ ยืนยัน</button><br>
+                <button class="btn-action btn-cancel-action" data-id="${documentSnap.id}" data-status="ยกเลิก">❌ ยกเลิก</button>
+              `;
+            } else if (data.status === 'ยืนยันแล้ว') {
+              actionButtons = `
+                <button class="btn-action btn-cancel-action" data-id="${documentSnap.id}" data-status="ยกเลิก">❌ ยกเลิก</button>
+              `;
+            } else {
+              actionButtons = '-';
+            }
+            
+            tr.innerHTML = `
+              <td>${data.date} <br> ${data.time}</td>
+              <td>${data.name}</td>
+              <td>${data.phone}</td>
+              <td>${data.car}</td>
+              <td>${data.service}</td>
+              <td>${data.details || '-'}</td>
+              <td><span class="status-badge ${data.status === 'รอยืนยัน' ? 'status-pending' : (data.status === 'ยืนยันแล้ว' ? 'status-confirmed' : '')}" style="${data.status === 'ยกเลิก' ? 'background:#e74c3c;color:#fff;' : ''}">${data.status}</span></td>
+              <td>${actionButtons}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+      } else {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#e74c3c;">กรุณาใส่ Firebase Config ในไฟล์ admin.html ก่อน</td></tr>';
+      }
+    } catch (error) {
+      console.error("Error fetching bookings:", error);
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#e74c3c;">เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>';
+    }
+  }
+
+  tbody.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('btn-action')) {
+      const id = e.target.getAttribute('data-id');
+      const newStatus = e.target.getAttribute('data-status');
+      
+      if (confirm(`คุณต้องการเปลี่ยนสถานะคิวนี้เป็น "${newStatus}" ใช่หรือไม่?`)) {
+        e.target.disabled = true;
+        e.target.textContent = 'กำลังอัปเดต...';
+        try {
+          await updateDoc(doc(db, "bookings", id), { status: newStatus });
+          fetchData(); 
+        } catch (err) {
+          console.error(err);
+          alert("เกิดข้อผิดพลาดในการอัปเดตสถานะ");
+          fetchData();
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
