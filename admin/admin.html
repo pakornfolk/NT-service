@@ -1,163 +1,278 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
-  <title>Admin - NT Service</title>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ผู้ดูแลระบบ (Admin) - NT Service</title>
+  <link rel="icon" type="image/png" href="../img/NT.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
+  <!-- ─── LOGIN PANEL ─── -->
   <div id="login-container">
-    <h2>Admin Login</h2>
+    <h2>Admin Portal</h2>
     <form id="login-form">
       <div class="login-group">
-        <label>Username</label>
-        <input type="text" id="login-user" required autocomplete="off">
+        <label for="login-user">Username</label>
+        <input type="text" id="login-user" required autocomplete="username" placeholder="ใส่ชื่อผู้ใช้">
       </div>
       <div class="login-group">
-        <label>Password</label>
-        <input type="password" id="login-pass" required>
+        <label for="login-pass">Password</label>
+        <input type="password" id="login-pass" required placeholder="ใส่รหัสผ่าน">
       </div>
-      <button type="submit" id="btn-login">เข้าสู่ระบบ</button>
+      <button type="submit" id="btn-login">เข้าสู่ระบบควบคุม</button>
       <div id="login-error">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง!</div>
     </form>
   </div>
 
+  <!-- ─── DASHBOARD PANEL ─── -->
   <div id="admin-dashboard">
-    <a href="../index.html" class="nav-back">&larr; กลับหน้าแรก</a>
-    <h1>จัดการคิวจองรับบริการ</h1>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>วันที่ต้องการ-เวลา</th>
-          <th>ชื่อลูกค้า</th>
-          <th>เบอร์โทร</th>
-          <th>รถยนต์</th>
-          <th>บริการ</th>
-          <th>รายละเอียด</th>
-          <th>สถานะ</th>
-          <th>จัดการ</th>
-        </tr>
-      </thead>
-      <tbody id="bookings-tbody">
-        <tr><td colspan="8" style="text-align:center;">กำลังโหลด... หรือยังไม่ได้ตั้งค่า Firebase</td></tr>
-      </tbody>
-    </table>
+    <div class="dashboard-header">
+      <div class="dashboard-title-wrap">
+        <h1>แผงควบคุมระบบคิวรับบริการ</h1>
+        <p>อู่ช่างตี๋ NT Service พุทธมณฑลสาย 2</p>
+      </div>
+      <a href="../index.html" class="nav-back">&larr; กลับหน้าหลักเว็บไซต์</a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <span class="stat-card-label">จองคิวทั้งหมด</span>
+        <span class="stat-card-val" id="stat-total">0</span>
+      </div>
+      <div class="stat-card pending">
+        <span class="stat-card-label">รอดำเนินการ</span>
+        <span class="stat-card-val" id="stat-pending">0</span>
+      </div>
+      <div class="stat-card confirmed">
+        <span class="stat-card-label">ยืนยันคิวแล้ว</span>
+        <span class="stat-card-val" id="stat-confirmed">0</span>
+      </div>
+      <div class="stat-card cancelled">
+        <span class="stat-card-label">ยกเลิกคิวแล้ว</span>
+        <span class="stat-card-val" id="stat-cancelled">0</span>
+      </div>
+    </div>
+
+    <!-- Controls & Tab Filters -->
+    <div class="dashboard-controls">
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="ทั้งหมด">ทั้งหมด</button>
+        <button class="tab-btn" data-filter="รอยืนยัน">รอยืนยัน</button>
+        <button class="tab-btn" data-filter="ยืนยันแล้ว">ยืนยันแล้ว</button>
+        <button class="tab-btn" data-filter="ยกเลิก">ยกเลิก</button>
+      </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 14%;">วัน-เวลาจอง</th>
+            <th style="width: 16%;">ชื่อลูกค้า</th>
+            <th style="width: 12%;">เบอร์โทรศัพท์</th>
+            <th style="width: 16%;">ยี่ห้อ/รุ่นรถ</th>
+            <th style="width: 16%;">บริการที่เลือก</th>
+            <th style="width: 16%;">รายละเอียดเพิ่มเติม</th>
+            <th style="width: 10%;">สถานะคิว</th>
+            <th style="width: 10%;">การดำเนินการ</th>
+          </tr>
+        </thead>
+        <tbody id="bookings-tbody">
+          <tr>
+            <td colspan="8" style="text-align:center; color: var(--muted); padding: 3rem;">กำลังโหลดข้อมูลรายการคิวจอง...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-  // TODO: ใส่ Firebase Config ตัวเดียวกับในหน้า index.html
-  const firebaseConfig = {
-    apiKey: "AIzaSyB2uzIukhYQ9lrCKPSWeBzLG3hz58PTixY",
-    authDomain: "nt-service-booking.firebaseapp.com",
-    projectId: "nt-service-booking",
-    storageBucket: "nt-service-booking.firebasestorage.app",
-    messagingSenderId: "912294226965",
-    appId: "1:912294226965:web:3d4cb7baf50ef9f6b8b21c",
-    measurementId: "G-Q0C82P2MRR"
-  };
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2uzIukhYQ9lrCKPSWeBzLG3hz58PTixY",
+      authDomain: "nt-service-booking.firebaseapp.com",
+      projectId: "nt-service-booking",
+      storageBucket: "nt-service-booking.firebasestorage.app",
+      messagingSenderId: "912294226965",
+      appId: "1:912294226965:web:3d4cb7baf50ef9f6b8b21c",
+      measurementId: "G-Q0C82P2MRR"
+    };
 
-  const loginForm = document.getElementById('login-form');
-  const loginContainer = document.getElementById('login-container');
-  const adminDashboard = document.getElementById('admin-dashboard');
-  const loginError = document.getElementById('login-error');
+    const loginForm = document.getElementById('login-form');
+    const loginContainer = document.getElementById('login-container');
+    const adminDashboard = document.getElementById('admin-dashboard');
+    const loginError = document.getElementById('login-error');
+    const tbody = document.getElementById('bookings-tbody');
 
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const user = document.getElementById('login-user').value;
-    const pass = document.getElementById('login-pass').value;
+    let db;
+    let allBookingsList = []; // Local cache of all bookings loaded
+    let currentFilter = 'ทั้งหมด';
 
-    if (user === 'admin' && pass === 'admin1234') {
-      loginContainer.style.display = 'none';
-      adminDashboard.style.display = 'block';
-      fetchData(); // Load data only after login
-    } else {
-      loginError.style.display = 'block';
-    }
-  });
+    // Login logic
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('login-user').value.trim();
+      const pass = document.getElementById('login-pass').value.trim();
 
-  const tbody = document.getElementById('bookings-tbody');
-  let db;
+      // Original credentials
+      if (user === 'admin' && pass === 'admin1234') {
+        loginContainer.style.display = 'none';
+        adminDashboard.style.display = 'block';
+        initAndFetchData();
+      } else {
+        loginError.style.display = 'block';
+      }
+    });
 
-  async function fetchData() {
-    try {
-      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
-        if (!db) {
+    async function initAndFetchData() {
+      try {
+        if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
           const app = initializeApp(firebaseConfig);
           db = getFirestore(app);
+          await fetchData();
+        } else {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--rust-light);">กรุณาตรวจสอบการตั้งค่า Firebase Config ในโค้ด</td></tr>';
         }
-        
+      } catch (err) {
+        console.error("Firebase init/fetch error:", err);
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--rust-light);">ไม่สามารถติดต่อกับฐานข้อมูล Firebase ได้</td></tr>';
+      }
+    }
+
+    async function fetchData() {
+      try {
         const q = query(collection(db, "bookings"), orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
         
-        if(querySnapshot.empty) {
-          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;">ยังไม่มีข้อมูลการจอง</td></tr>';
-        } else {
-          tbody.innerHTML = '';
-          querySnapshot.forEach((documentSnap) => {
-            const data = documentSnap.data();
-            const tr = document.createElement('tr');
-            
-            let actionButtons = '';
-            if (data.status === 'รอยืนยัน') {
-              actionButtons = `
-                <button class="btn-action btn-confirm-action" data-id="${documentSnap.id}" data-status="ยืนยันแล้ว">✅ ยืนยัน</button><br>
-                <button class="btn-action btn-cancel-action" data-id="${documentSnap.id}" data-status="ยกเลิก">❌ ยกเลิก</button>
-              `;
-            } else if (data.status === 'ยืนยันแล้ว') {
-              actionButtons = `
-                <button class="btn-action btn-cancel-action" data-id="${documentSnap.id}" data-status="ยกเลิก">❌ ยกเลิก</button>
-              `;
-            } else {
-              actionButtons = '-';
-            }
-            
-            tr.innerHTML = `
-              <td>${data.date} <br> ${data.time}</td>
-              <td>${data.name}</td>
-              <td>${data.phone}</td>
-              <td>${data.car}</td>
-              <td>${data.service}</td>
-              <td>${data.details || '-'}</td>
-              <td><span class="status-badge ${data.status === 'รอยืนยัน' ? 'status-pending' : (data.status === 'ยืนยันแล้ว' ? 'status-confirmed' : '')}" style="${data.status === 'ยกเลิก' ? 'background:#e74c3c;color:#fff;' : ''}">${data.status}</span></td>
-              <td>${actionButtons}</td>
-            `;
-            tbody.appendChild(tr);
-          });
-        }
-      } else {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#e74c3c;">กรุณาใส่ Firebase Config ในไฟล์ admin.html ก่อน</td></tr>';
-      }
-    } catch (error) {
-      console.error("Error fetching bookings:", error);
-      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:#e74c3c;">เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>';
-    }
-  }
+        allBookingsList = [];
+        querySnapshot.forEach((docSnap) => {
+          allBookingsList.push({ id: docSnap.id, ...docSnap.data() });
+        });
 
-  tbody.addEventListener('click', async (e) => {
-    if (e.target.classList.contains('btn-action')) {
-      const id = e.target.getAttribute('data-id');
-      const newStatus = e.target.getAttribute('data-status');
-      
-      if (confirm(`คุณต้องการเปลี่ยนสถานะคิวนี้เป็น "${newStatus}" ใช่หรือไม่?`)) {
-        e.target.disabled = true;
-        e.target.textContent = 'กำลังอัปเดต...';
-        try {
-          await updateDoc(doc(db, "bookings", id), { status: newStatus });
-          fetchData(); 
-        } catch (err) {
-          console.error(err);
-          alert("เกิดข้อผิดพลาดในการอัปเดตสถานะ");
-          fetchData();
-        }
+        calculateStats();
+        renderBookings();
+      } catch (error) {
+        console.error("Error fetching bookings list:", error);
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:var(--rust-light);">เกิดข้อผิดพลาดในการโหลดข้อมูล</td></tr>';
       }
     }
-  });
-</script>
+
+    function calculateStats() {
+      let total = allBookingsList.length;
+      let pending = 0;
+      let confirmed = 0;
+      let cancelled = 0;
+
+      allBookingsList.forEach(booking => {
+        if (booking.status === 'รอยืนยัน') pending++;
+        else if (booking.status === 'ยืนยันแล้ว') confirmed++;
+        else if (booking.status === 'ยกเลิก') cancelled++;
+      });
+
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-pending').textContent = pending;
+      document.getElementById('stat-confirmed').textContent = confirmed;
+      document.getElementById('stat-cancelled').textContent = cancelled;
+    }
+
+    function renderBookings() {
+      // Filter list based on selected tab
+      const filteredList = allBookingsList.filter(booking => {
+        if (currentFilter === 'ทั้งหมด') return true;
+        return booking.status === currentFilter;
+      });
+
+      if (filteredList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color: var(--muted); padding: 3rem;">ไม่พบรายการจองคิวในหมวดหมู่นี้</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = '';
+      filteredList.forEach((booking) => {
+        const { id, date, time, name, phone, car, service, details, status } = booking;
+        const tr = document.createElement('tr');
+        
+        // Define action buttons based on status
+        let actionButtons = '';
+        if (status === 'รอยืนยัน') {
+          actionButtons = `
+            <div class="action-btn-group">
+              <button class="btn-action confirm" data-id="${id}" data-status="ยืนยันแล้ว" title="ยืนยันคิว">✓</button>
+              <button class="btn-action cancel" data-id="${id}" data-status="ยกเลิก" title="ยกเลิกคิว">✗</button>
+            </div>`;
+        } else if (status === 'ยืนยันแล้ว') {
+          actionButtons = `
+            <div class="action-btn-group">
+              <button class="btn-action cancel" data-id="${id}" data-status="ยกเลิก" title="ยกเลิกคิว">✗</button>
+            </div>`;
+        } else {
+          actionButtons = '<span style="color:var(--muted); font-size:0.85rem;">สิ้นสุดคิว</span>';
+        }
+
+        // Define status class badge
+        let badgeClass = 'status-pending';
+        if (status === 'ยืนยันแล้ว') badgeClass = 'status-confirmed';
+        else if (status === 'ยกเลิก') badgeClass = 'status-cancelled';
+
+        tr.innerHTML = `
+          <td class="td-datetime">${date} <span>เวลา: ${time} น.</span></td>
+          <td><strong style="color:var(--white);">${name}</strong></td>
+          <td class="td-phone">${phone}</td>
+          <td>${car}</td>
+          <td>${service}</td>
+          <td style="font-size:0.88rem; color:var(--muted); max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${details || ''}">${details || '-'}</td>
+          <td><span class="status-badge ${badgeClass}">${status}</span></td>
+          <td>${actionButtons}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Set up tab filtering
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        tabButtons.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentFilter = e.target.getAttribute('data-filter');
+        renderBookings();
+      });
+    });
+
+    // Handle action buttons (Confirm / Cancel)
+    tbody.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('btn-action')) {
+        const id = e.target.getAttribute('data-id');
+        const newStatus = e.target.getAttribute('data-status');
+        
+        if (confirm(`คุณแน่ใจหรือไม่ที่จะเปลี่ยนสถานะคิวจองนี้เป็น "${newStatus}"?`)) {
+          e.target.disabled = true;
+          try {
+            await updateDoc(doc(db, "bookings", id), { status: newStatus });
+            // Re-fetch data to reflect changes and refresh stats
+            await fetchData();
+          } catch (err) {
+            console.error("Error updating booking status:", err);
+            alert("เกิดข้อผิดพลาดในการเปลี่ยนสถานะคิวจอง");
+            e.target.disabled = false;
+          }
+        }
+      }
+    });
+  </script>
+
 </body>
+
 </html>

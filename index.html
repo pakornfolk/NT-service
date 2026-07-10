@@ -2,446 +2,482 @@
 <html lang="th">
 
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>อู่ช่างตี๋ NT Service</title>
-<link rel="icon" type="image/png" href="img/NT.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="index.css">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>อู่ช่างตี๋ NT Service - อู่ซ่อมรถยนต์ สาย 2 ครบวงจร</title>
+  <link rel="icon" type="image/png" href="img/NT.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <img src="img/NT.png" alt="NT Service">
-      <div class="nav-brand">
-        <span class="nav-brand-main">NT Service</span>
-        <span class="nav-brand-sub">อู่ซ่อมรถยนต์ · Bangkok</span>
-      </div>
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="#services">บริการ</a></li>
-      <li><a href="#work">ผลงาน</a></li>
-      <li><a href="#Day">เวลาทำการ</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
-      <li><a href="booking/booking.html" class="nav-cta">📅 จองคิว</a></li>
-      <li><a href="admin/admin.html" title="Admin Login" style="font-size:0.8rem; font-family: 'IBM Plex Mono', monospace; text-transform:uppercase; color:white;">🔒 Admin</a></li>
-    </ul>
-
-    <button id="menu-btn" aria-label="Toggle menu">
-      <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-  </div>
-
-  <div id="mobile-menu">
-    <ul>
-      <li><a href="booking/booking.html">📅 จองคิว</a></li>
-      <li><a href="#services">บริการของเรา</a></li>
-      <li><a href="#work">ภาพผลงาน</a></li>
-      <li><a href="#Day">วันและเวลาทำการ</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
-      <li><a href="admin/admin.html" style="color:white;">🔒 Admin</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ─── HERO ─── -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-
-  <div class="hero-content">
-    <div>
-      <p class="hero-eyebrow fade-in"> · อู่ช่างตี๋ สาย 2 · </p>
-      <h1 class="hero-title fade-in delay-1">
-        NT<br><span class="accent">Service</span>
-      </h1>
-      <p class="hero-desc fade-in delay-2">
-        ให้บริการซ่อมรถยนต์ทุกประเภท ด้วยประสบการณ์และความเชี่ยวชาญ<br>
-        เครื่องยนต์ · เบรก · คลัทช์ · ช่วงล่าง · แอร์ · ระบบไฟ
-      </p>
-      <div class="hero-actions fade-in delay-3">
-        <a href="booking/booking.html" class="btn-primary">📅 จองคิวออนไลน์</a>
-        <a href="#contact" class="btn-secondary">📍 ดูแผนที่</a>
-        <a href="checking/checking.html" class="btn-secondary">ตรวจสอบประวัติการจอง</a>
-      </div>
-    </div>
-
-    <div class="hero-logo-wrap fade-in delay-2">
-      <div class="hero-logo-ring"></div>
-      <img src="img/NT.png" alt="NT Service Logo" class="hero-logo">
-    </div>
-  </div>
-
-  <div class="hero-stats fade-in delay-4">
-    <div class="stat-item">
-      <div class="stat-num">6+</div>
-      <div class="stat-label">ประเภทบริการ</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">MON–SAT</div>
-      <div class="stat-label">เปิดบริการ</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">9–18</div>
-      <div class="stat-label">เวลาทำการ</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">ALL</div>
-      <div class="stat-label">รถทุกประเภท</div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── NOTICE ─── -->
-<div class="notice-banner">
-  <p>⚠ เว็บไซต์นี้เป็นข้อมูลแนะนำบริการของอู่ช่างตี๋ NT Service เท่านั้น</p>
-</div>
-
-<div class="divider-line"></div>
-
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="services-inner">
-    <div class="services-header">
-      <p class="section-tag">What We Do</p>
-      <h2 class="section-title">บริการของเรา</h2>
-    </div>
-
-    <div class="services-grid">
-
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <span class="service-icon-wrap">🔧</span>
-        <div class="service-name">ซ่อมเครื่องยนต์</div>
-        <p class="service-desc">ตรวจเช็คและซ่อมเครื่องยนต์ทุกชนิด พร้อมเปลี่ยนอะไหล่ตามที่ลูกค้าต้องการ</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <span class="service-icon-wrap">⚙️</span>
-        <div class="service-name">เปลี่ยนถ่ายน้ำมัน</div>
-        <p class="service-desc">เปลี่ยนถ่ายน้ำมันเครื่อง น้ำมันเกียร์ และของเหลวทุกชนิดตามระยะทาง</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <span class="service-icon-wrap">🔩</span>
-        <div class="service-name">ระบบเบรก</div>
-        <p class="service-desc">ตรวจสอบและซ่อมระบบเบรกครบวงจร เพื่อความปลอดภัยในการขับขี่</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">04</div>
-        <span class="service-icon-wrap">💡</span>
-        <div class="service-name">ระบบไฟฟ้า</div>
-        <p class="service-desc">ซ่อมระบบไฟฟ้า ตรวจสอบแบตเตอรี่ ไดชาร์จ และระบบสัญญาณไฟทุกชนิด</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">05</div>
-        <span class="service-icon-wrap">❄️</span>
-        <div class="service-name">ระบบแอร์</div>
-        <p class="service-desc">ซ่อมและดูแลระบบแอร์ เปลี่ยนน้ำยาแอร์ ทำความสะอาดตู้แอร์ทุกรูปแบบ</p>
-      </div>
-
-      <div class="service-card">
-        <div class="service-num">06</div>
-        <span class="service-icon-wrap">🛞</span>
-        <div class="service-name">ระบบคลัทช์</div>
-        <p class="service-desc">ตรวจสอบและซ่อมระบบคลัทช์ พร้อมปรับเปลี่ยนตามสภาพการใช้งาน</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider-line"></div>
-
-<!-- ─── WORK ─── -->
-<section id="work">
-  <div class="work-header">
-    <div>
-      <p class="section-tag">Our Work</p>
-      <h2 class="section-title">ภาพผลงาน</h2>
-      <p class="work-subtitle">📸 ตัวอย่างผลงานส่วนหนึ่งจากทีมช่างของเรา</p>
-    </div>
-    <div class="gallery-arrows">
-      <button class="gallery-arrow" id="btn-prev">&#8592;</button>
-      <button class="gallery-arrow" id="btn-next">&#8594;</button>
-    </div>
-  </div>
-
-  <div class="gallery-wrapper">
-  <div class="gallery-track scrollbar-hide" id="gallery-track">
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/2.jpg" alt="เปลี่ยนตู้แอร์ Honda Civic FC">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Honda Civic FC</div>
-        <div class="gallery-title">เปลี่ยนตู้แอร์</div>
-        <p class="gallery-desc">เปลี่ยนและทำความสะอาดตู้แอร์ และเช็คระบบแอร์ ให้แอร์กลับมาเย็นอีกครั้ง</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/1.jpg" alt="เปลี่ยนผ้าเบรค Toyota Altis">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Toyota Altis</div>
-        <div class="gallery-title">ตรวจสอบระบบเบรค & เปลี่ยนผ้าเบรค</div>
-        <p class="gallery-desc">เปลี่ยนอะไหล่แท้ พร้อมรับประกัน</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/3.jpg" alt="ตรวจเช็คห้องเครื่อง Toyota Mighty">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Toyota Mighty</div>
-        <div class="gallery-title">ตรวจเช็คห้องเครื่อง</div>
-        <p class="gallery-desc">เปลี่ยนสายพาน และมู่เล่หน้าเครื่อง</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/4.jpg" alt="ตรวจเช็คช่วงล่าง Toyota Vios">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Toyota Vios</div>
-        <div class="gallery-title">ตรวจเช็คช่วงล่าง</div>
-        <p class="gallery-desc">เปลี่ยนเบ้าโช๊ค ตรวจเช็คช่วงล่างอื่นๆ</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/5.jpg" alt="เปลี่ยนถ่ายของเหลว Benz E200">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Benz E200</div>
-        <div class="gallery-title">เปลี่ยนถ่ายของเหลว</div>
-        <p class="gallery-desc">ถ่ายน้ำมันเครื่อง-น้ำมันเกียร์ ตามระยะ และเปลี่ยนกรองเกียร์</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/6.jpg" alt="เช็คระบบไฟ Mitsubishi Triton">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Mitsubishi Triton</div>
-        <div class="gallery-title">เช็คระบบไฟ</div>
-        <p class="gallery-desc">ติดตั้งระบบไฟ-ไฟหน้ารถ เปลี่ยนแบตเตอรี่</p>
-      </div>
-    </div>
-
-    <div class="gallery-card">
-      <div class="gallery-img-wrap">
-        <img src="img/7.jpg" alt="เช็คช่วงล่าง Honda HRV">
-      </div>
-      <div class="gallery-info">
-        <div class="gallery-car">Honda HRV</div>
-        <div class="gallery-title">เช็คช่วงล่าง</div>
-        <p class="gallery-desc">เปลี่ยนยางแท่นเครื่อง และ Rack Power</p>
-      </div>
-    </div>
-
-    <!-- Coming Soon cards -->
-    <div class="gallery-card">
-      <div class="coming-soon-card">
-        <div>📸</div>
-        COMING SOON
-        <span>รูปภาพเพิ่มเติมเร็วๆนี้</span>
-      </div>
-    </div>
-    <div class="gallery-card">
-      <div class="coming-soon-card">
-        <div>📸</div>
-        COMING SOON
-        <span>รูปภาพเพิ่มเติมเร็วๆนี้</span>
-      </div>
-    </div>
-    <div class="gallery-card">
-      <div class="coming-soon-card">
-        <div>📸</div>
-        COMING SOON
-        <span>รูปภาพเพิ่มเติมเร็วๆนี้</span>
-      </div>
-    </div>
-
-  </div><!-- end gallery-track -->
-  </div><!-- end gallery-wrapper -->
-</section>
-
-<div class="divider-line"></div>
-
-<section id="Day">
-  <div class="hours-inner">
-    <div>
-      <p class="section-tag">Opening Hours</p>
-      <h2 class="section-title">วันและเวลาทำการ</h2>
-
-      <div class="hours-table">
-        <div class="hours-row">
-          <span class="hours-day">จันทร์ – ศุกร์</span>
-          <span class="hours-time">09:00 – 18:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">เสาร์</span>
-          <span class="hours-time">09:00 – 18:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="hours-day">อาทิตย์</span>
-          <span class="hours-time hours-closed">🚫 หยุดทำการ</span>
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="img/NT.png" alt="NT Service">
+        <div class="nav-brand">
+          <span class="nav-brand-main">NT Service</span>
+          <span class="nav-brand-sub">อู่ซ่อมรถยนต์ · Bangkok</span>
         </div>
       </div>
+
+      <ul class="nav-links">
+        <li><a href="#services">บริการของเรา</a></li>
+        <li><a href="#work">ผลงาน</a></li>
+        <li><a href="#Day">เวลาทำการ</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+        <li><a href="booking/booking.html" class="nav-cta">📅 จองคิวออนไลน์</a></li>
+        <li><a href="admin/admin.html" title="Admin Login" style="font-size:0.75rem; text-transform:uppercase; color:var(--muted);">🔒 Admin</a></li>
+      </ul>
+
+      <button id="menu-btn" aria-label="Toggle menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
 
-    <div class="hours-visual">
-      <div class="clock-box">
-        <div class="clock-time" id="live-clock">09:00</div>
-        <div class="clock-label">เวลาปัจจุบัน (Bangkok)</div>
-        <div id="open-status">
-          <div class="open-badge">
-            <div class="dot"></div>
-            <span>กำลังโหลด...</span>
+    <div id="mobile-menu">
+      <ul>
+        <li><a href="booking/booking.html">📅 จองคิวออนไลน์</a></li>
+        <li><a href="checking/checking.html">🔍 ตรวจสอบประวัติการจอง</a></li>
+        <li><a href="#services">บริการของเรา</a></li>
+        <li><a href="#work">ภาพผลงาน</a></li>
+        <li><a href="#Day">วันและเวลาทำการ</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+        <li><a href="admin/admin.html">🔒 Admin Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div>
+        <p class="hero-eyebrow fade-in">อู่ช่างตี๋ พุทธมณฑลสาย 2</p>
+        <h1 class="hero-title fade-in delay-1">
+          NT<br><span class="accent">Service</span>
+        </h1>
+        <p class="hero-desc fade-in delay-2">
+          ให้บริการซ่อมรถยนต์ทุกประเภท ด้วยความเชี่ยวชาญระดับมืออาชีพและราคาเป็นกันเอง เครื่องยนต์ · เบรก · คลัทช์ · ช่วงล่าง · แอร์ · ระบบไฟ ตรวจเช็ควิเคราะห์อาการด้วยเครื่องมือทันสมัย
+        </p>
+        <div class="hero-actions fade-in delay-3">
+          <a href="booking/booking.html" class="btn-primary">📅 จองคิวออนไลน์</a>
+          <a href="checking/checking.html" class="btn-secondary">🔍 เช็คสถานะการจอง</a>
+          <a href="#contact" class="btn-secondary">📍 ดูแผนที่ร้าน</a>
+        </div>
+      </div>
+
+      <div class="hero-logo-wrap fade-in delay-2">
+        <div class="hero-logo-ring"></div>
+        <img src="img/NT.png" alt="NT Service Logo" class="hero-logo">
+      </div>
+    </div>
+
+    <div class="hero-stats fade-in delay-4">
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">หมวดหมู่บริการ</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">MON–SAT</div>
+        <div class="stat-label">วันเปิดทำการ</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">9:00 - 18:00</div>
+        <div class="stat-label">เวลาเปิด-ปิด</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">ALL BRAND</div>
+        <div class="stat-label">รับซ่อมรถทุกยี่ห้อ</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NOTICE ─── -->
+  <div class="notice-banner">
+    <p>⚠️ ประกาศ: เว็บไซต์นี้เป็นระบบจองคิวและแนะนำบริการอย่างเป็นทางการของอู่ช่างตี๋ NT Service</p>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <div class="services-inner">
+      <div class="services-header">
+        <p class="section-tag">What We Offer</p>
+        <h2 class="section-title">บริการของเรา</h2>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <span class="service-icon-wrap">🔧</span>
+          <div class="service-name">ซ่อมเครื่องยนต์</div>
+          <p class="service-desc">ตรวจเช็คและซ่อมเครื่องยนต์ทุกชนิด แก้ไขปัญหาเครื่องสั่น เร่งไม่ขึ้น เสียงดัง พร้อมเปลี่ยนอะไหล่แท้คุณภาพสูง</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <span class="service-icon-wrap">⚙️</span>
+          <div class="service-name">เปลี่ยนถ่ายน้ำมันเครื่อง</div>
+          <p class="service-desc">บริการเปลี่ยนถ่ายน้ำมันเครื่อง น้ำมันเกียร์ น้ำมันเบรก และของเหลวทุกชนิดตามระยะทางด้วยแบรนด์ชั้นนำ</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <span class="service-icon-wrap">🔩</span>
+          <div class="service-name">ระบบเบรก & คลัทช์</div>
+          <p class="service-desc">ตรวจสอบและซ่อมระบบเบรก เจียรจานเบรก เปลี่ยนผ้าเบรก เปลี่ยนคลัทช์รถยนต์ เพื่อความปลอดภัยในการขับขี่ 100%</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <span class="service-icon-wrap">💡</span>
+          <div class="service-name">ระบบไฟฟ้า & แบตเตอรี่</div>
+          <p class="service-desc">วิเคราะห์และซ่อมระบบไฟรถยนต์ ตรวจเช็คไดชาร์จ ไดสตาร์ท และเปลี่ยนแบตเตอรี่รถยนต์พร้อมรับประกัน</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <span class="service-icon-wrap">❄️</span>
+          <div class="service-name">ระบบแอร์รถยนต์</div>
+          <p class="service-desc">แก้ปัญหาแอร์ไม่เย็น มีกลิ่นอับ ซ่อมคอมเพรสเซอร์แอร์ เปลี่ยนตู้แอร์ ไล่ระบบน้ำยาแอร์ ล้างแอร์รถยนต์ครบวงจร</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <span class="service-icon-wrap">🛞</span>
+          <div class="service-name">ช่วงล่าง & ระบบบังคับเลี้ยว</div>
+          <p class="service-desc">ซ่อมโช๊คอัพ ลูกปืนล้อ ลูกหมาก เพลาขับ แร็คพวงมาลัยพาวเวอร์ แก้ไขปัญหารถเอียงหรือเสียงดังขณะเลี้ยว</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <!-- ─── WORK ─── -->
+  <section id="work">
+    <div class="work-header">
+      <div>
+        <p class="section-tag">Our Portfolio</p>
+        <h2 class="section-title">ภาพผลงาน</h2>
+        <p class="work-subtitle">📸 ตัวอย่างงานซ่อมจริง จากความไว้วางใจของลูกค้า</p>
+      </div>
+      <div class="gallery-arrows">
+        <button class="gallery-arrow" id="btn-prev" aria-label="Previous image">←</button>
+        <button class="gallery-arrow" id="btn-next" aria-label="Next image">→</button>
+      </div>
+    </div>
+
+    <div class="gallery-wrapper">
+      <div class="gallery-track scrollbar-hide" id="gallery-track">
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/2.jpg" alt="เปลี่ยนตู้แอร์ Honda Civic FC">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Honda Civic FC</div>
+            <div class="gallery-title">เปลี่ยนตู้แอร์ระบบดิจิทัล</div>
+            <p class="gallery-desc">รื้อถอนและทำความสะอาดระบบตู้แอร์รั่วซึม เปลี่ยนตู้แอร์ใหม่พร้อมชาร์จน้ำยาแอร์ เย็นฉ่ำสู้แดดเมืองไทย</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/1.jpg" alt="เปลี่ยนผ้าเบรค Toyota Altis">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Toyota Altis</div>
+            <div class="gallery-title">ตรวจสอบระบบเบรก & ผ้าเบรก</div>
+            <p class="gallery-desc">เปลี่ยนผ้าเบรคคู่หน้า/คู่หลัง เจียรจานปรับสภาพผิวหน้าสัมผัส ทดสอบประสิทธิภาพการทำงานก่อนส่งมอบ</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/3.jpg" alt="ตรวจเช็คห้องเครื่อง Toyota Mighty">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Toyota Mighty</div>
+            <div class="gallery-title">ตรวจเช็คโอเวอร์ฮอลเครื่องยนต์</div>
+            <p class="gallery-desc">ปรับตั้งวาล์ว เปลี่ยนสายพานเครื่องยนต์ และมู่เล่หน้าเครื่อง แก้ไขปัญหาน้ำมันรั่วซึมรอบเครื่อง</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/4.jpg" alt="ตรวจเช็คช่วงล่าง Toyota Vios">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Toyota Vios</div>
+            <div class="gallery-title">ซ่อมบำรุงระบบช่วงล่างหลัก</div>
+            <p class="gallery-desc">เปลี่ยนเบ้าโช๊คอัพ ยางกันฝุ่น ยางกันกระแทก ตรวจเช็คสภาพลูกหมากและบูชยางปีกนกทั้งหมด</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/5.jpg" alt="เปลี่ยนถ่ายของเหลว Benz E200">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Benz E200</div>
+            <div class="gallery-title">เปลี่ยนถ่ายของเหลวระดับพรีเมียม</div>
+            <p class="gallery-desc">ถ่ายน้ำมันเครื่องสังเคราะห์แท้ 100% เปลี่ยนกรองน้ำมันเครื่อง และเปลี่ยนน้ำมันเกียร์ออโต้พร้อมซีลกรองเกียร์</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/6.jpg" alt="เช็คระบบไฟ Mitsubishi Triton">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Mitsubishi Triton</div>
+            <div class="gallery-title">แก้ไขไล่ระบบไฟฟ้ารอบคัน</div>
+            <p class="gallery-desc">ตรวจสอบระบบไดชาร์จและฟิวส์จ่ายไฟ ติดตั้งแก้ไขระบบไฟส่องสว่างหน้า และเปลี่ยนแบตเตอรี่แอมป์สูง</p>
+          </div>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-img-wrap">
+            <img src="img/7.jpg" alt="เช็คช่วงล่าง Honda HRV">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-car">Honda HRV</div>
+            <div class="gallery-title">เปลี่ยนชุดยางแท่นเครื่อง & แร็คพวงมาลัย</div>
+            <p class="gallery-desc">เปลี่ยนยางแท่นเครื่องแท้ห้างเพื่อลดแรงสั่นสะเทือน และเปลี่ยนชุดแร็คพวงมาลัยเพาเวอร์ไร้เสียงดังรบกวน</p>
+          </div>
+        </div>
+
+        <!-- Coming Soon cards -->
+        <div class="gallery-card">
+          <div class="coming-soon-card">
+            <div>📸</div>
+            COMING SOON
+            <span>รูปภาพผลงานใหม่ๆ เร็วๆ นี้</span>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="coming-soon-card">
+            <div>📸</div>
+            COMING SOON
+            <span>รูปภาพผลงานใหม่ๆ เร็วๆ นี้</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-line"></div>
+
+  <!-- ─── HOURS ─── -->
+  <section id="Day">
+    <div class="hours-inner">
+      <div>
+        <p class="section-tag">Opening Hours</p>
+        <h2 class="section-title">วันและเวลาทำการ</h2>
+
+        <div class="hours-table">
+          <div class="hours-row">
+            <span class="hours-day">จันทร์ – ศุกร์</span>
+            <span class="hours-time">09:00 – 18:00</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">เสาร์</span>
+            <span class="hours-time">09:00 – 18:00</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">อาทิตย์</span>
+            <span class="hours-time hours-closed">🚫 หยุดทำการ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hours-visual">
+        <div class="clock-box">
+          <div class="clock-time" id="live-clock">09:00</div>
+          <div class="clock-label">เวลาปัจจุบัน (Bangkok Time)</div>
+          <div id="open-status">
+            <div class="open-badge">
+              <div class="dot"></div>
+              <span>กำลังตรวจสอบสถานะ...</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider-line"></div>
+  <div class="divider-line"></div>
 
-<!-- ─── CONTACT ─── -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-info">
-      <div>
-        <p class="section-tag">Find Us</p>
-        <h2 class="section-title">ติดต่อเรา</h2>
-      </div>
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div>
+          <p class="section-tag">Find Our Garage</p>
+          <h2 class="section-title">ติดต่อเรา</h2>
+        </div>
 
-      <div>
-        <p class="contact-block-title">ที่อยู่</p>
-        <p class="contact-block-value">อู่ช่างตี๋ NT Service บ่อน้ำมันพลาซ่า สาย 2<br>แขวงทวีวัฒนา เขตทวีวัฒนา<br>กรุงเทพมหานคร 10170<br>( หลังร้านนวด ดี.ดี )</p>
-      </div>
+        <div>
+          <p class="contact-block-title">ที่ตั้งอู่ซ่อมรถ</p>
+          <p class="contact-block-value">
+            อู่ช่างตี๋ NT Service บ่อน้ำมันพลาซ่า พุทธมณฑลสาย 2<br>
+            แขวงทวีวัฒนา เขตทวีวัฒนา กรุงเทพฯ 10170<br>
+            <span style="color: var(--muted); font-size: 0.95rem;">( ตั้งอยู่บ่อน้ำมันพลาซ่า ด้านหลังร้านนวด ดี.ดี )</span>
+          </p>
+        </div>
 
-      <div>
-        <p class="contact-block-title">โทรศัพท์</p>
-        <a href="tel:0813811247" class="phone-link">081-381-1247</a>
-        <span class="phone-sub">ช่างตี๋</span>
-        <a href="tel:0866262802" class="phone-link">086-626-2802</a>
-        <span class="phone-sub">คุณน้อย</span>
-      </div>
+        <div>
+          <p class="contact-block-title">ติดต่อเรา</p>
+          <div style="margin-bottom: 1rem;">
+            <a href="tel:0813811247" class="phone-link">081-381-1247</a>
+            <br><span class="phone-sub">ช่างตี๋ </span>
+          </div>
+          <div>
+            <a href="tel:0866262802" class="phone-link">086-626-2802</a>
+            <br><span class="phone-sub">คุณน้อย </span>
+          </div>
+        </div>
 
-      <div class="review-cta">
-        <div class="review-cta-icon">⭐</div>
-        <div class="review-cta-text">
-          <strong>ช่วยรีวิวให้เราได้เลยครับ!</strong>
-          รบกวนลูกค้าทุกท่าน เข้าไปรีวิว 5 ดาว ใน Google Map กันเยอะๆนะครับ ✍️
+        <div class="review-cta">
+          <div class="review-cta-icon">⭐</div>
+          <div class="review-cta-text">
+            <strong>ร่วมแชร์ความพึงพอใจการบริการ</strong>
+            ช่วยเป็นกำลังใจให้ทีมช่างของเราโดยการรีวิว 5 ดาว บน Google Maps เพื่อพัฒนาบริการที่ดียิ่งขึ้นไปครับ ✍️
+          </div>
         </div>
       </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.3129504512904!2d100.39312737485609!3d13.759991686632723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e297113f9ed05d%3A0xb3b127c18de0bef7!2sNT%20service%20-%20car%20garage!5e0!3m2!1sen!2sth!4v1761837339133!5m2!1sen!2sth"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="แผนที่กูเกิลแมป อู่ช่างตี๋ NT Service">
+        </iframe>
+      </div>
     </div>
+  </section>
 
-    <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.3129504512904!2d100.39312737485609!3d13.759991686632723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e297113f9ed05d%3A0xb3b127c18de0bef7!2sNT%20service%20-%20car%20garage!5e0!3m2!1sen!2sth!4v1761837339133!5m2!1sen!2sth"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</section>
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-brand">NT Service</div>
+    <div class="footer-credit">© อู่ช่างตี๋ NT Service | พัฒนาโดย Pakornkiat Vonma & Antigravity IDE</div>
+  </footer>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="footer-brand">NT Service</div>
-  <div class="footer-credit">© อู่ช่างตี๋ NT Service | design by Pakornkiat Vonma</div>
-</footer>
+  <script>
+    // Gallery slide control
+    const galleryTrack = document.getElementById('gallery-track');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
 
-<script>
-  // Gallery arrow buttons — เลื่อนทีละ 3 การ์ด
-  const galleryTrack = document.getElementById('gallery-track');
-  const btnPrev = document.getElementById('btn-prev');
-  const btnNext = document.getElementById('btn-next');
-
-  function getCardWidth() {
-    const card = galleryTrack.querySelector('.gallery-card');
-    if (!card) return 316;
-    return card.offsetWidth + parseInt(getComputedStyle(galleryTrack).gap || 16);
-  }
-
-  btnNext.addEventListener('click', () => {
-    galleryTrack.scrollBy({ left: getCardWidth() * 3, behavior: 'smooth' });
-  });
-
-  btnPrev.addEventListener('click', () => {
-    galleryTrack.scrollBy({ left: -getCardWidth() * 3, behavior: 'smooth' });
-  });
-
-  // Drag-to-scroll gallery
-  const track = document.getElementById('gallery-track');
-  let isDown = false, startX, scrollLeft;
-  track.addEventListener('mousedown', e => {
-    isDown = true;
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  track.addEventListener('mouseleave', () => isDown = false);
-  track.addEventListener('mouseup', () => isDown = false);
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    track.scrollLeft = scrollLeft - (x - startX);
-  });
-
-  // Mobile menu
-  const btn = document.getElementById('menu-btn');
-  const menu = document.getElementById('mobile-menu');
-  btn.addEventListener('click', () => menu.style.display = menu.style.display === 'block' ? 'none' : 'block');
-
-  // Close mobile menu on link click
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.style.display = 'none'));
-
-  // Live clock + open status
-  function updateClock() {
-    const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
-    const h = String(now.getHours()).padStart(2, '0');
-    const m = String(now.getMinutes()).padStart(2, '0');
-    document.getElementById('live-clock').textContent = h + ':' + m;
-
-    const day = now.getDay(); // 0=Sun, 6=Sat
-    const hour = now.getHours() + now.getMinutes() / 60;
-    const isOpen = day >= 1 && day <= 6 && hour >= 9 && hour < 18;
-
-    const statusEl = document.getElementById('open-status');
-    if (isOpen) {
-      statusEl.innerHTML = '<div class="open-badge"><div class="dot"></div><span>เปิดให้บริการ</span></div>';
-      statusEl.querySelector('.dot').style.background = '#2ecc71';
-    } else {
-      statusEl.innerHTML = '<div class="open-badge" style="background:rgba(192,57,43,0.1);border-color:rgba(192,57,43,0.3);color:#e74c3c;"><div class="dot" style="background:#e74c3c;"></div><span>ปิดให้บริการ</span></div>';
+    function getCardWidth() {
+      const card = galleryTrack.querySelector('.gallery-card');
+      if (!card) return 336;
+      return card.offsetWidth + parseInt(getComputedStyle(galleryTrack).gap || 24);
     }
-  }
-  updateClock();
-  setInterval(updateClock, 30000);
-</script>
+
+    btnNext.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: getCardWidth() * 2, behavior: 'smooth' });
+    });
+
+    btnPrev.addEventListener('click', () => {
+      galleryTrack.scrollBy({ left: -getCardWidth() * 2, behavior: 'smooth' });
+    });
+
+    // Touch/Mouse Drag to scroll
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    galleryTrack.addEventListener('mousedown', e => {
+      isDown = true;
+      galleryTrack.style.cursor = 'grabbing';
+      startX = e.pageX - galleryTrack.offsetLeft;
+      scrollLeft = galleryTrack.scrollLeft;
+    });
+
+    galleryTrack.addEventListener('mouseleave', () => {
+      isDown = false;
+      galleryTrack.style.cursor = 'grab';
+    });
+
+    galleryTrack.addEventListener('mouseup', () => {
+      isDown = false;
+      galleryTrack.style.cursor = 'grab';
+    });
+
+    galleryTrack.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - galleryTrack.offsetLeft;
+      const walk = (x - startX) * 1.5; // Scroll speed multiplier
+      galleryTrack.scrollLeft = scrollLeft - walk;
+    });
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = isOpen ? 'none' : 'block';
+    });
+
+    // Close menu when clicking outside or clicking any link
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.style.display === 'block' && !mobileMenu.contains(e.target) && e.target !== menuBtn) {
+        mobileMenu.style.display = 'none';
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.style.display = 'none';
+      });
+    });
+
+    // Live clock and real-time open status
+    function updateClock() {
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' }));
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('live-clock').textContent = h + ':' + m;
+
+      const day = now.getDay(); // 0=Sun, 6=Sat
+      const hour = now.getHours() + now.getMinutes() / 60;
+      const isOpen = day >= 1 && day <= 6 && hour >= 9 && hour < 18;
+
+      const statusEl = document.getElementById('open-status');
+      if (isOpen) {
+        statusEl.innerHTML = '<div class="open-badge"><div class="dot"></div><span>เปิดให้บริการตามปกติ</span></div>';
+      } else {
+        statusEl.innerHTML = `
+          <div class="open-badge" style="background:rgba(229,57,53,0.08); border-color:rgba(229,57,53,0.25); color:#ff1744;">
+            <div class="dot" style="background:#ff1744; box-shadow:0 0 10px #ff1744; animation:none;"></div>
+            <span>ปิดทำการชั่วคราว</span>
+          </div>`;
+      }
+    }
+    
+    updateClock();
+    setInterval(updateClock, 10000); // Update every 10 seconds for accuracy
+  </script>
 </body>
+
 </html>

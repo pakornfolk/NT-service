@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,39 +8,47 @@
   <link rel="icon" type="image/png" href="../img/NT.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="checking.css">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="checking.css">
 </head>
+
 <body>
 
+  <!-- ─── NAV ─── -->
   <nav>
-    <a href="../index.html" class="nav-logo">
-      <img src="../img/NT.png" alt="NT Service">
-      <div class="nav-brand">
-        <span class="nav-brand-main">NT Service</span>
-      </div>
-    </a>
-    <a href="../index.html" class="nav-back">&larr; กลับหน้าหลัก</a>
+    <div class="nav-inner" style="padding: 0;">
+      <a href="../index.html" class="nav-logo" style="text-decoration: none;">
+        <img src="../img/NT.png" alt="NT Service">
+        <div class="nav-brand">
+          <span class="nav-brand-main">NT Service</span>
+        </div>
+      </a>
+      <a href="../index.html" class="nav-back" style="text-decoration: none;">&larr; กลับหน้าหลัก</a>
+    </div>
   </nav>
 
+  <!-- ─── CHECKING SECTION ─── -->
   <div class="checking-wrapper">
     <div class="checking-bg"></div>
     <div class="checking-card">
       <div class="checking-header">
         <p class="section-tag">Booking History</p>
         <h2 class="section-title">ตรวจสอบประวัติการจอง</h2>
-        <p style="color: var(--muted); font-size: 0.9rem;">กรอกเบอร์โทรศัพท์เพื่อตรวจสอบสถานะ หรือยกเลิกคิว (ล่วงหน้า 1 วัน)</p>
+        <p style="color: var(--muted); font-size: 0.95rem; font-weight: 300;">กรอกเบอร์โทรศัพท์มือถือที่ใช้ในการจองเพื่อตรวจสอบประวัติและสถานะคิว</p>
       </div>
 
-      <div class="form-group">
-        <input type="tel" id="search-phone" placeholder="กรอกเบอร์โทรศัพท์ที่ใช้จอง" autocomplete="off">
+      <div class="search-container">
+        <div class="search-input-wrap">
+          <input type="tel" id="search-phone" placeholder="กรอกเบอร์โทรศัพท์ เช่น 08XXXXXXXX" autocomplete="tel" maxlength="10">
+        </div>
+        <button type="button" id="btn-search" class="btn-search">🔍 ค้นหาคิว</button>
       </div>
-      <button type="button" id="btn-search" class="btn-submit">🔍 ค้นหา</button>
-      
-      <div id="search-results" style="margin-top: 2rem;"></div>
+
+      <div id="search-results"></div>
     </div>
   </div>
+
   <!-- ─── FOOTER ─── -->
   <footer>
     <div class="footer-brand">NT Service</div>
@@ -50,6 +59,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore, collection, query, where, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyB2uzIukhYQ9lrCKPSWeBzLG3hz58PTixY",
       authDomain: "nt-service-booking.firebaseapp.com",
@@ -62,7 +72,7 @@
 
     let app, db;
     try {
-      if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+      if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
         app = initializeApp(firebaseConfig);
         db = getFirestore(app);
       }
@@ -74,78 +84,169 @@
     const searchResults = document.getElementById('search-results');
 
     btnSearch.addEventListener('click', async () => {
-      const phone = document.getElementById('search-phone').value.trim();
-      if(!phone) { alert('กรุณากรอกเบอร์โทรศัพท์เพื่อค้นหาคิว'); return; }
-      if (!db) { alert('ระบบฐานข้อมูลยังไม่พร้อม'); return; }
+      const phoneInput = document.getElementById('search-phone');
+      const phone = phoneInput.value.trim();
       
+      if (!phone) { 
+        alert('กรุณากรอกเบอร์โทรศัพท์เพื่อค้นหาคิวรับบริการ'); 
+        phoneInput.focus();
+        return; 
+      }
+      
+      if (!db) { 
+        alert('ระบบฐานข้อมูลยังไม่พร้อมใช้งาน กรุณาลองใหม่อีกครั้งในภายหลัง'); 
+        return; 
+      }
+
+      const originalText = btnSearch.textContent;
       btnSearch.textContent = 'กำลังค้นหา...';
+      btnSearch.disabled = true;
+      searchResults.innerHTML = '';
+
       try {
         const q = query(collection(db, "bookings"), where("phone", "==", phone));
         const querySnapshot = await getDocs(q);
-        
+
         if (querySnapshot.empty) {
-          searchResults.innerHTML = '<p style="color:var(--rust); text-align:center;">ไม่พบประวัติการจองคิวของเบอร์โทรศัพท์นี้</p>';
+          searchResults.innerHTML = `
+            <div style="text-align:center; padding: 2rem; color: var(--rust-light); font-weight: 500;">
+              ไม่พบประวัติการจองคิวสำหรับเบอร์โทรศัพท์นี้
+            </div>`;
         } else {
-          let html = '<div style="background:var(--black); padding:1.5rem; border-radius:4px; border:1px solid var(--border);">';
-          querySnapshot.forEach((docSnap) => {
-            const data = docSnap.data();
-            const id = docSnap.id;
-            
-            const appointmentDate = new Date(data.date);
+          // Sort results locally to avoid composite index requirement
+          const bookings = [];
+          querySnapshot.forEach(docSnap => {
+            bookings.push({ id: docSnap.id, ...docSnap.data() });
+          });
+
+          bookings.sort((a, b) => {
+            const dateTimeA = (a.date || "") + "T" + (a.time || "00:00");
+            const dateTimeB = (b.date || "") + "T" + (b.time || "00:00");
+            return dateTimeB.localeCompare(dateTimeA); // Latest bookings first
+          });
+
+          let html = '';
+          bookings.forEach((booking) => {
+            const { id, date, time, name, car, service, status, details } = booking;
+
+            // Date parsing (avoid timezone bugs by constructing local midnight date)
+            const [year, month, day] = date.split('-').map(Number);
+            const appointmentDate = new Date(year, month - 1, day);
             const today = new Date();
-            today.setHours(0,0,0,0);
-            
+            today.setHours(0, 0, 0, 0);
+
             const diffTime = appointmentDate.getTime() - today.getTime();
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-            
-            let cancelBtn = '';
-            if (data.status !== 'ยกเลิก' && diffDays > 1) {
-               cancelBtn = `<button type="button" class="btn-user-cancel" data-id="${id}" style="margin-top:1rem; width:100%; background:rgba(231,76,60,0.1); color:#e74c3c; border:1px solid #e74c3c; padding:0.6rem; border-radius:2px; cursor:pointer; font-family:'Prompt';">❌ ยกเลิกคิวนี้</button>`;
-            } else if (data.status !== 'ยกเลิก' && diffDays <= 1) {
-               cancelBtn = `<p style="font-size:0.8rem; color:var(--muted); margin-top:0.8rem; text-align:center;">(ใกล้วันนัดหมายแล้ว หากต้องการยกเลิกกรุณาติดต่ออู่โดยตรง)</p>`;
+            const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+            // Generate Timeline Stepper UI
+            let stepperHtml = '';
+            if (status === 'ยกเลิก') {
+              stepperHtml = `
+                <div class="status-stepper">
+                  <div class="step-item">
+                    <div class="step-dot">✓</div>
+                    <div class="step-label">ส่งคำขอจองคิว</div>
+                  </div>
+                  <div class="step-item cancelled">
+                    <div class="step-dot">❌</div>
+                    <div class="step-label">ยกเลิกคิวแล้ว</div>
+                  </div>
+                </div>`;
+            } else {
+              stepperHtml = `
+                <div class="status-stepper">
+                  <div class="step-item confirmed">
+                    <div class="step-dot">✓</div>
+                    <div class="step-label">ส่งคำขอจองคิว</div>
+                  </div>
+                  <div class="step-item ${status === 'ยืนยันแล้ว' ? 'confirmed' : 'active'}">
+                    <div class="step-dot">${status === 'ยืนยันแล้ว' ? '✓' : '⏳'}</div>
+                    <div class="step-label">${status === 'ยืนยันแล้ว' ? 'ยืนยันคิวเรียบร้อย' : 'กำลังรอประสานงาน'}</div>
+                  </div>
+                </div>`;
+            }
+
+            // Cancellation Action logic
+            let cancelActionHtml = '';
+            if (status !== 'ยกเลิก') {
+              if (diffDays > 1) {
+                cancelActionHtml = `
+                  <button type="button" class="btn-user-cancel" data-id="${id}">❌ ยกเลิกคิวจองนี้</button>
+                  <p class="cancel-notice">คุณสามารถยกเลิกคิวออนไลน์ได้ด้วยตนเอง (ล่วงหน้าอย่างน้อย 1 วัน)</p>`;
+              } else {
+                cancelActionHtml = `
+                  <p class="cancel-notice" style="color:var(--muted); font-size: 0.85rem;">
+                    ⚠️ ใกล้วันเข้ารับบริการแล้ว หากต้องการเปลี่ยนแปลงหรือยกเลิกคิว กรุณาโทรติดต่ออู่ช่างตี๋โดยตรง
+                  </p>`;
+              }
             }
 
             html += `
-              <div style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; font-size: 0.95rem;">
-                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
-                  <span><strong>วันที่:</strong> <span style="color:var(--white);">${data.date}</span></span>
-                  <span><strong>เวลา:</strong> <span style="color:var(--white);">${data.time}</span></span>
+              <div class="booking-result-item">
+                <div class="booking-result-header">
+                  <div class="booking-result-date">🗓️ วันนัดหมาย: ${date}</div>
+                  <div class="booking-result-time">⏰ เวลา: ${time} น.</div>
                 </div>
-                <div style="margin-bottom:0.5rem;"><strong>บริการ:</strong> ${data.service}</div>
-                <div style="margin-bottom:0.5rem;"><strong>รถยนต์:</strong> ${data.car}</div>
-                <div><strong>สถานะคิว:</strong> <span style="font-weight:600; padding: 0.2rem 0.5rem; border-radius:2px; color:${data.status==='ยกเลิก'?'#e74c3c':(data.status==='ยืนยันแล้ว'?'#2ecc71':'var(--amber)')}; background:rgba(255,255,255,0.05);">${data.status}</span></div>
-                ${cancelBtn}
-              </div>
-            `;
+
+                <div class="booking-detail-row">
+                  <div class="booking-detail-label">ชื่อผู้จอง:</div>
+                  <div class="booking-detail-value">${name}</div>
+                </div>
+                <div class="booking-detail-row">
+                  <div class="booking-detail-label">ยี่ห้อ/รุ่นรถ:</div>
+                  <div class="booking-detail-value">${car}</div>
+                </div>
+                <div class="booking-detail-row">
+                  <div class="booking-detail-label">ประเภทบริการ:</div>
+                  <div class="booking-detail-value">${service}</div>
+                </div>
+                <div class="booking-detail-row">
+                  <div class="booking-detail-label">อาการเพิ่มเติม:</div>
+                  <div class="booking-detail-value">${details || 'ไม่ได้ระบุ'}</div>
+                </div>
+
+                ${stepperHtml}
+                ${cancelActionHtml}
+              </div>`;
           });
-          html += '</div>';
+
           searchResults.innerHTML = html;
         }
       } catch (err) {
         console.error(err);
-        searchResults.innerHTML = '<p style="color:var(--rust); text-align:center;">เกิดข้อผิดพลาดในการค้นหาข้อมูล</p>';
+        searchResults.innerHTML = `
+          <div style="text-align:center; padding: 2rem; color: var(--rust-light); font-weight: 500;">
+            เกิดข้อผิดพลาดในการดึงข้อมูล กรุณาลองใหม่อีกครั้ง
+          </div>`;
+      } finally {
+        btnSearch.textContent = originalText;
+        btnSearch.disabled = false;
       }
-      btnSearch.textContent = '🔍 ค้นหา';
     });
 
+    // Handle cancellation click
     searchResults.addEventListener('click', async (e) => {
       if (e.target.classList.contains('btn-user-cancel')) {
-        if(confirm('คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคิวนี้?')) {
-          const id = e.target.getAttribute('data-id');
-          e.target.textContent = 'กำลังยกเลิก...';
+        const id = e.target.getAttribute('data-id');
+        
+        if (confirm('คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคิวรับบริการนี้?')) {
+          e.target.textContent = 'กำลังทำการยกเลิก...';
           e.target.disabled = true;
+          
           try {
             await updateDoc(doc(db, "bookings", id), { status: 'ยกเลิก' });
-            alert('ยกเลิกคิวของคุณเรียบร้อยแล้ว');
-            btnSearch.click(); 
+            alert('ยกเลิกคิวรับบริการของคุณสำเร็จเรียบร้อยแล้ว');
+            btnSearch.click(); // Refresh list
           } catch(err) {
-            alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+            console.error("Cancel booking error:", err);
+            alert('เกิดข้อผิดพลาดในการยกเลิกคิว กรุณาติดต่อทางอู่โดยตรง');
             btnSearch.click();
           }
         }
       }
     });
   </script>
-  
+
 </body>
+
 </html>
